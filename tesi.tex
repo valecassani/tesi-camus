@@ -1,0 +1,180 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[11pt,english,italian,openright]{book}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3.5cm,lmargin=4cm,rmargin=3cm}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{esint}
+\onehalfspacing
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{\texorpdfstring%
+  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+\DeclareRobustCommand*{\lyxarrow}{%
+\@ifstar
+{\leavevmode\,$\triangleleft$\,\allowbreak}
+{\leavevmode\,$\triangleright$\,\allowbreak}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\providecommand{\algorithmname}{Algoritmo}
+\floatname{algorithm}{\protect\algorithmname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% pacchetti aggiuntivi
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{amsthm}
+\usepackage{rotating}
+\usepackage{caption}
+\usepackage{epsfig}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{cite}
+\usepackage[normalem]{ulem}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{algpseudocode}
+
+% questa è uno sporca soluzione per gestire il fatto che le versioni
+% LTS di Ubuntu/Kubuntu hanno un pacchetto "geometry" vecchio
+\include{geometry.sty}
+
+% sistema il numero pagina nelle prime pagine dei capitoli
+\fancypagestyle{plain}{
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[OC]{\begin{flushright}\thepage\end{flushright}}
+}
+
+% header "carini" per la tesi
+\fancyhead{}
+\fancyhead[LE]{\slshape \nouppercase \leftmark}
+\fancyhead[RO]{\slshape \nouppercase \rightmark}
+\fancyfoot[EC]{\begin{flushleft}\thepage\end{flushleft}}
+\fancyfoot[OC]{\begin{flushright}\thepage\end{flushright}}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\@ifundefined{showcaptionsetup}{}{%
+ \PassOptionsToPackage{caption=false}{subfig}}
+\usepackage{subfig}
+\makeatother
+
+\usepackage{listings}
+\addto\captionsenglish{\renewcommand{\algorithmname}{Algorithm}}
+\addto\captionsenglish{\renewcommand{\lstlistingname}{Listing}}
+\addto\captionsitalian{\renewcommand{\algorithmname}{Algoritmo}}
+\addto\captionsitalian{\renewcommand{\lstlistingname}{Listato}}
+\renewcommand{\lstlistingname}{Listato}
+
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+\newgeometry{margin=3cm}\input{frontespizio/frontespizio.tex}\restoregeometry
+
+\cleardoublepage{}
+
+\begin{flushright}
+\emph{\input{dedica.tex}}\cleardoublepage{}
+\par\end{flushright}
+
+
+\chapter*{Ringraziamenti}
+
+\thispagestyle{empty}\input{ringraziamenti.tex}\cleardoublepage{}
+
+
+\chapter*{Sommario}
+
+\thispagestyle{empty}\input{sommario.tex}\cleardoublepage{}
+
+
+\chapter*{Abstract}
+
+\thispagestyle{empty}\input{abstract.tex}\cleardoublepage{}\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{fancy}\tableofcontents{}\listoffigures
+\listoftables
+\listof{algorithm}{Elenco degli algoritmi}
+\cleardoublepage{}\mainmatter
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+
+\chapter*{Introduzione\label{chap:introduzione}}
+
+\addcontentsline{toc}{chapter}{Introduzione}
+\markboth{Introduzione}{Introduzione}\input{introduzione.tex}
+
+
+\chapter{Background\label{chap:background}}
+
+\input{1-background/background.tex}
+
+
+\chapter{Il Progetto CAMUS\label{chap:camus}}
+
+\input{2-camus/camus.tex}
+
+
+\chapter{Metodologia\label{chap:metodologia}}
+
+\input{3-metodologia/metodologia.tex}
+
+
+\chapter{Implementazione\label{chap:implementazione}}
+
+\input{4-implementazione/implementazione.tex}
+
+
+\chapter{Valutazione delle performance\label{chap:performance}}
+
+\input{5-performance/performance.tex}
+
+
+\chapter*{Conclusioni e sviluppi futuri\label{chap:conclusioni}}
+
+\addcontentsline{toc}{chapter}{Conclusioni}
+\markboth{Conclusioni}{Conclusioni}\input{conclusioni.tex}\bibliographystyle{plain}
+\bibliography{bibliografia}
+\addcontentsline{toc}{chapter}{Bibliografia}
+
+\appendix
+
+\chapter{Prima appendice\label{app:prima-appendice}}
+
+\input{appendice-a/appendice-a.tex}
+
+
+\chapter{Seconda appendice \label{app:seconda-appendice}}
+
+\input{appendice-b/appendice-b.tex}
+
+
+\chapter{Terza appendice\label{app:terza-appendice}}
+
+\input{appendice-c/appendice-c.tex}\cleardoublepage{}
+\end{document}
