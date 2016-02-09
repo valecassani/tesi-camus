@@ -1,0 +1,24 @@
+language:
+- ruby
+env:
+- FOLDER=Tesi FILENAME=tesi_cassani
+before_install:
+- '[ "$TRAVIS_SECURE_ENV_VARS" == "false" ] || openssl aes-256-cbc -K $encrypted_d2464aca9896_key -iv $encrypted_d2464aca9896_iv
+  -in .dropbox_uploader.enc -out ~/.dropbox_uploader -d'
+- sudo apt-get update -qq
+- sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+  texlive-science
+- curl "https://raw.githubusercontent.com/andreafabrizi/Dropbox-Uploader/master/dropbox_uploader.sh"
+  -o dropbox_uploader.sh
+- chmod +x dropbox_uploader.sh
+script:
+- mkdir _build
+- pdflatex -output-directory _build tesi.tex
+- cp bibliografia.bib _build
+- bibtex _build/tesi
+- pdflatex -output-directory _build tesi.tex
+- pdflatex -output-directory _build tesi.tex
+- ./dropbox_uploader.sh upload _build/tesi.pdf ${FOLDER}/${FILENAME}_latest.pdf
+- ./dropbox_uploader.sh upload _build/tesi.pdf ${FOLDER}/${FILENAME}_build${TRAVIS_BUILD_NUMBER}.pdf
+notifications:
+  email: false
