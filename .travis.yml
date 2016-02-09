@@ -1,7 +1,7 @@
 language:
 - ruby
 env:
-- FOLDER=Tesi FILENAME=tesi_cassani
+- FOLDER="CAMUS-MaterialeUtile/Tesi-Cassani/Tesi" FILENAME=tesi_cassani
 before_install:
 - '[ "$TRAVIS_SECURE_ENV_VARS" == "false" ] || openssl aes-256-cbc -K $encrypted_d2464aca9896_key -iv $encrypted_d2464aca9896_iv
   -in .dropbox_uploader.enc -out ~/.dropbox_uploader -d'
@@ -19,6 +19,5 @@ script:
 - pdflatex -output-directory _build tesi.tex
 - pdflatex -output-directory _build tesi.tex
 - ./dropbox_uploader.sh upload _build/tesi.pdf ${FOLDER}/${FILENAME}_latest.pdf
-- ./dropbox_uploader.sh upload _build/tesi.pdf ${FOLDER}/${FILENAME}_build${TRAVIS_BUILD_NUMBER}.pdf
 notifications:
   email: false
